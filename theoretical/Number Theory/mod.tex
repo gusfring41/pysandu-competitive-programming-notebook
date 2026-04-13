@@ -1,0 +1,29 @@
+
+\subsection{Modular Arithmetic \& Number Theory}
+
+\begin{itemize}
+    \item \textbf{Properties of Modulo:}
+    \begin{itemize}
+        \item Sum: $(a + b) \% m = (a \% m + b \% m) \% m$
+        \item Subtraction: $(a - b) \% m = (a \% m - b \% m + m) \% m$
+        \item Product: $(a \times b) \% m = (a \% m \times b \% m) \% m$
+    \end{itemize}
+
+    \item \textbf{Modular Division:} 
+    $(a / b) \equiv (a \times b^{-1}) \pmod m$, where $b \times b^{-1} \equiv 1 \pmod m$. 
+    Valid if $\gcd(b, m) = 1$.
+
+    \item \textbf{Euler's Totient Theorem:} 
+    If $\gcd(a, m) = 1$, then $a^{\phi(m)} \equiv 1 \pmod m$.
+
+    \item \textbf{Fermat's Little Theorem:} 
+    If $p$ is prime, $a^{p-1} \equiv 1 \pmod p$.
+    Inverse: $a^{-1} \equiv a^{p-2} \pmod p$.
+
+    \item \textbf{Power Reduction:} 
+    If $p$ is prime: $a^b \equiv a^{b \pmod{p-1}} \pmod p$.
+    General: $a^b \equiv a^{b \pmod{\phi(m)}} \pmod m$ (if $\gcd(a, m) = 1$).
+
+    \item \textbf{Bézout's Identity:} 
+    For $a, b$, there exist $x, y$ such that $ax + by = \gcd(a, b)$.
+\end{itemize}

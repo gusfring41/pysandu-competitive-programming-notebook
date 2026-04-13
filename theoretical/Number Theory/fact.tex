@@ -1,0 +1,22 @@
+\subsection{Divisors and Prime Factorization}
+
+For an integer $n > 1$, let its prime factorization be $n = p_1^{a_1} \cdot p_2^{a_2} \dots p_k^{a_k}$.
+
+\begin{itemize}
+    \item \textbf{Number of Divisors ($\tau$):} 
+    The total count of divisors of $n$.
+    \[ \tau(n) = \prod_{i=1}^{k} (a_i + 1) \]
+
+    \item \textbf{Sum of Divisors ($\sigma$):} 
+    The sum of all positive divisors of $n$.
+    \[ \sigma(n) = \prod_{i=1}^{k} \left( \frac{p_i^{a_i+1} - 1}{p_i - 1} \right) \]
+
+    \item \textbf{Product of Divisors ($P$):} 
+    The product of all divisors of $n$.
+    \[ P(n) = n^{\frac{\tau(n)}{2}} \]
+    \textit{Note:} If $n$ is a perfect square, $\tau(n)$ is odd, but the result remains an integer.
+
+    \item \textbf{Euler's Totient Function ($\phi$):} 
+    Number of integers $k \in [1, n]$ such that $\gcd(k, n) = 1$.
+    \[ \phi(n) = n \prod_{i=1}^{k} \left( 1 - \frac{1}{p_i} \right) \]
+\end{itemize}
