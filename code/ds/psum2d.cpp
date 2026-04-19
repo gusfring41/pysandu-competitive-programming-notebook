@@ -3,8 +3,8 @@
 // Space Complexity: O(N*M)
 
 int n, m;
-vector<vector<int>> arr(n+1, vector<int>(m+1, 0);
-vector<vector<int>> psum(n+1, vector<int>(m+1, 0);
+vector<vector<int>> arr(n+1, vector<int>(m+1, 0));
+vector<vector<int>> psum(n+1, vector<int>(m+1, 0));
 
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= m; j++) {
