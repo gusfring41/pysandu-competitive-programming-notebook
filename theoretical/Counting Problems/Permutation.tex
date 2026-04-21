@@ -1,0 +1,9 @@
+\subsection{Permutation}
+
+\begin{itemize}
+    \item \textbf{Definition: } A permutation of a set is an arrangement of its members into a sequence or linear order. The number of permutations of $n$ distinct objects is given by $n!$ (n factorial).
+    \item \textbf{Permutations with Repetition: } If there are $n$ objects where there are $n_1$ indistinguishable objects of one type, $n_2$ indistinguishable objects of another type, and so on, the number of distinct permutations is given by $\dfrac{n!}{n_1! \cdot n_2! \cdot ...}$.
+    \item \textbf{Circular Permutations: } The number of ways to arrange $n$ distinct objects in a circle is given by $(n-1)!$
+    \item \textbf{Circular Permutations with Repetition: } . Let $g = \gcd(n_1, n_2, \dots)$. The total number of arrangements is given by:
+    $$ C = \frac{1}{n} \sum_{d|g} \phi(d) \frac{(n/d)!}{(n_1/d)! \cdot (n_2/d)! \dots} $$
+\end{itemize}

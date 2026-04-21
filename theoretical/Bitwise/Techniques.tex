@@ -1,0 +1,9 @@
+\subsection{Techniques}
+
+\begin{itemize}
+    \item \textbf{Check Even/Odd}: $n \& 1$ can be used to check if a number is even (result is 0) or odd (result is 1).
+    \item \textbf{Power of 2 check: } $(n \&\& !(n \& (n - 1)))$ returns true if $n$ is a power of 2.
+    \item \textbf{Count 1s: } To count the number of 1s in the binary representation of a number, you can use the expression $n \& (n - 1)$ repeatedly until $n$ becomes 0. Each time you perform this operation, it removes the rightmost 1 from the binary representation, allowing you to count how many times you can do this before $n$ becomes 0.
+    \item \textbf{Isolate/Clear Rightmost Set Bit: } To isolate the rightmost set bit of a number, you can use the expression $n \& (-n)$. To clear the rightmost set bit, you can use $n \& (n - 1)$.
+    \item \textbf{Subset Generation: } Use a loop from $0$ to $2^n - 1$ to generate all subsets of a set of size $n$. Each number in this range represents a subset, where the binary representation indicates which elements are included $1$ or excluded $0$.
+\end{itemize}
