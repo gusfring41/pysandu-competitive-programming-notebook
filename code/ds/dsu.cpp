@@ -1,6 +1,7 @@
 // Disjoint Set Union(DSU)
 // Time Complexity: aprox. O(1)
 // Space Complexity: O(n)
+// Use cases: connected components, cycle detection, offline edge deletion
 
 struct DSU{
 

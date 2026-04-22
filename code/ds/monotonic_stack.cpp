@@ -1,15 +1,15 @@
-// Increasing Monotonic Stack
-// Time Complexity: O(n)
-// Space Complexity: O(n)
+// Monotonic Stack, next greater number in a circular array
+// Time Complexity: O(N)
+// Space Complexity: O(N)
+// Use cases: ring problems, finding next larger obstacle in a loop
 
-vector<int> nextGreaterElements(vector<int>& arr) {
-    int n = arr.size();
+    int n; vector<int> arr(n);
     vector<int> res(n, -1);
     stack<int> st;
 
     for (int i = 0; i < 2 * n; i++) {
         int num = arr[i % n];
-        while (!st.empty() && arr[st.top()] < num) {
+        while (!st.empty() and arr[st.top()] < num) { // remove os menores
             res[st.top()] = num;
             st.pop();
         }
@@ -18,28 +18,13 @@ vector<int> nextGreaterElements(vector<int>& arr) {
         }
     }
 
-    return res;
-}
+// Monotonic Stack, next smaller element in a linear array 
+// Use cases: largest rectangle in histogram, subarray contribution
 
-// Decreasing Monotonic Stack
-// Time Complexity: O(n)
-// Space Complexity: O(n)
-
-vector<int> nextSmallerElements(vector<int>& arr) {
-    int n = arr.size();
-    vector<int> res(n, -1);
-    stack<int> st;
-
-    for (int i = 0; i < 2 * n; ++i) {
-        int num = arr[i % n];
-        while (!st.empty() && arr[st.top()] > num) {
-            res[st.top()] = num;
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() and arr[st.top()] > arr[i]) { // remove os maiores
+            res[st.top()] = arr[i];
             st.pop();
         }
-        if (i < n) {
-            st.push(i);
-        }
+        st.push(i);
     }
-
-    return res;
-}

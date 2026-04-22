@@ -1,6 +1,7 @@
 // Binary Indexed Tree(BIT)
 // Time complexity: query and update log N
 // Space complexity: O(N)
+// Use cases: dynamic psum, inversion counting, dynamic multiset
 
 struct BIT{
 
@@ -25,14 +26,15 @@ struct BIT{
         return sum;
     }
 
-    int queryRange(int L, int R){
-        return query(R) - query(L-1);
+    int queryRange(int l, int r){
+        return query(r) - query(l-1);
     }
 
+    // retorna o índice do k-ésimo elemento da bit
     int find_kth(int k){
 
         int idx = 0;
-        int max_bit = 63 - __builtin_clz(n);
+        int max_bit = __lg(n);
 
         for(int i = max_bit; i>= 0; i--){
             int next_idx = idx + (1ll << i);
@@ -44,4 +46,5 @@ struct BIT{
 
         return idx+1;
     }
+
 };

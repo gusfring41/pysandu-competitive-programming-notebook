@@ -1,6 +1,7 @@
 // General take/not take dp problem
 // Time Complexity: aprox. O(n * m)
 // Space Complexity: O(n * m) / O(m)
+// Use cases: target sum(subset, partition), knapsack
 
 // Top-down
 

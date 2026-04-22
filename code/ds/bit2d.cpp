@@ -1,6 +1,7 @@
 // Binary Indexed Tree(BIT) 2D
 // Time complexity: query and update log N * log M
 // Space complexity: O(N*M)
+// Use cases: dynamic 2D prefix sums, counting active points in a dynamic rectangle
 
 struct BIT2D {
 

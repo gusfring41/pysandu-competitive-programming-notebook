@@ -1,8 +1,8 @@
 // Sparse Table
 // Time Complexity: O(n * log n) build, O(1) querie
 // Space complexity: O(n * log n)
-// Idempotent operation f(a, a) = a
-
+// Idempotent operation f(a, a) = a (min, max, gcd, and, or)
+// Use cases: idempotent functions range queries
 struct SparseTable{
 
     int n, p;
@@ -23,7 +23,7 @@ struct SparseTable{
         }
     }
 
-    int queries(int l, int r){
+    int query(int l, int r){
         int len = r  - l + 1;
         int p_local = __lg(len), k = (1ll << p_local);
         return op(st[p_local][l], st[p_local][r - k + 1]);

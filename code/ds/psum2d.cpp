@@ -1,6 +1,7 @@
 // Psum2D
 // Time Complexity: Query O(1)
 // Space Complexity: O(N*M)
+// Use cases: static 2d range sum, fixed-size window search, max sum submatrix
 
 int n, m;
 vector<vector<int>> arr(n+1, vector<int>(m+1, 0));
