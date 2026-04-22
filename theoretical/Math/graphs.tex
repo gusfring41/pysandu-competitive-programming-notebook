@@ -1,0 +1,15 @@
+\subsection{Graphs}
+
+\begin{itemize}
+    \item \textbf{Definition: }A \textit{graph} is a pair $G = (V, E)$ where $V$ is a set of \textit{vertices} and $E$ is a set of \textit{edges}, which are unordered pairs of distinct vertices.
+    \item \textbf{Degree of a vertex: }The degree of a vertex $v$ in a graph $G$, denoted $\deg(v)$, is the number of edges incident to $v$.
+    \item \textbf{Handshaking Lemma: }In any graph, the sum of the degrees of all vertices is equal to twice the number of edges. Formally, $\sum_{v \in V} \deg(v) = 2|E|$.
+    \item \textbf{Graph Isomorphism: }Two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ are isomorphic if there exists a bijection $f: V_1 \to V_2$ such that $\{u, v\} \in E_1$ if and only if $\{f(u), f(v)\} \in E_2$ for all $u, v \in V_1$.
+    \item \textbf{Bipartite Graph: }A graph is bipartite if its vertex set can be partitioned into two disjoint sets $U$ and $V$ such that every edge connects a vertex in $U$ to a vertex in $V$.
+    \item \textbf{Complete Graph: }A complete graph on $n$ vertices, denoted $K_n$, is a graph in which every pair of distinct vertices is connected by a unique edge. It has $\binom{n}{2}$ edges.
+    \item \textbf{Path and Cycle: }A path in a graph is a sequence of vertices where each adjacent pair is connected by an edge. A cycle is a path that starts and ends at the same vertex without repeating any edges or vertices (except for the starting/ending vertex).
+    \item \textbf{Connected Graph: }A graph is connected if there is a path between any two vertices in the graph.
+    \item \textbf{Tree: }A tree is a connected graph with no cycles. A tree with $n$ vertices has exactly $n-1$ edges.
+    \item \textbf{Planar Graph: }A graph is planar if it can be drawn on a plane without any edges crossing. Kuratowski's theorem states that a graph is planar if and only if it does not contain a subgraph that is a subdivision of $K_5$ (the complete graph on five vertices) or $K_{3,3}$ (the complete bipartite graph on two sets of three vertices).
+    \item \textbf{Euler's Formula: }For a connected planar graph with $V$ vertices, $E$ edges, and $F$ faces, the following relationship holds: $V - E + F = 2$.
+\end{itemize}
