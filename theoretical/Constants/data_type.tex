@@ -1,6 +1,42 @@
+\subsection{Complexity Estimates \& Tactical Limits}
+
+\begin{itemize}
+    \item \textbf{1 second limit:} 1 second is usually enough for a program to perform around $10^8$ operations.
+    \item \textbf{256Mb limit:} 256 megabytes is usually enough to store around $10^7$ integers.
+\end{itemize}
+
+\begin{itemize} 
+    \item \textbf{Common Complexity Thresholds (for 1s time limit):}
+    \begin{itemize}
+        \item $N \le 10$: $O(N!)$ or $O(N^2 \cdot N!)$ (Permutations, brute force).
+        \item $N \le 20$: $O(2^N \cdot N^k)$ (Subset DP, Bitmask DP).
+        \item $N \le 500$: $O(N^3)$ (Floyd-Warshall, matrix multiplication).
+        \item $N \le 5000$: $O(N^2)$ (Simple DP, nested loops).
+        \item $N \le 2 \cdot 10^5$: $O(N \log N)$ (Sorting, Segment Tree, DSU, Dijkstra). \textbf{Note:} $O(N \log^2 N)$ also usually passes.
+        \item $N \le 10^6$: $O(N)$ or $O(N \log N)$ with very small constants.
+        \item $N > 10^7$: $O(\log N)$ or $O(1)$ (Binary search, math formulas, matrix exponentiation).
+    \end{itemize}
+    \item \textbf{Specific Bounds for Math:}
+    \begin{itemize}
+        \item \textbf{Factorials:} $12!$ fits in 32-bit \texttt{int}, $20!$ fits in 64-bit \texttt{long long}.
+        \item \textbf{Powers of 2:} $2^{31}-1 \approx 2 \cdot 10^9$ (\texttt{int}), $2^{63}-1 \approx 9 \cdot 10^{18}$ (\texttt{long long}).
+        \item \textbf{Fibonacci:} $F_{46}$ is the last to fit in 32-bit \texttt{int}, $F_{92}$ in 64-bit \texttt{long long}.
+    \end{itemize}
+\end{itemize}
+
 \subsection{Data type limits}
 
 \begin{itemize}
-    \item \textbf{Integer limits}: The typical 32 bit signed integer bounds are $(\approx \pm 2 \times 10^9)$ and is obtained by using the \texttt{INT\_MAX} and \texttt{INT\_MIN} constants, while the 64 bit signed integer bounds are $(\approx \pm 9 \times 10^{18})$ and is obtained by using the \texttt{LLONG\_MAX} and \texttt{LLONG\_MIN} constants.
-    \item \textbf{Floating-point limits}: The typical 32 bit floating-point bounds are approximately $\pm 3.4 \times 10^{38}$ and is obtained by using the \texttt{FLT\_MAX} and \texttt{FLT\_MIN} constants, while the 64 bit floating-point bounds are approximately $\pm 1.7 \times 10^{308}$ and is obtained by using the \texttt{DBL\_MAX} and \texttt{DBL\_MIN} constants.
+    \item \textbf{Integer limits}: 
+    \begin{itemize}
+        \item \texttt{int} (32-bit): $\approx \pm 2.14 \times 10^9$.
+        \item \texttt{long long} (64-bit): $\approx \pm 9.22 \times 10^{18}$.
+        \item \texttt{\_\_int128\_t}: $\approx \pm 1.7 \times 10^{38}$ 
+    \end{itemize}
+    \item \textbf{Floating-point precision}:
+    \begin{itemize}
+        \item \texttt{float}: 7 decimal digits.
+        \item \texttt{double}: 15 decimal digits 
+        \item \texttt{long double}: 18-19 decimal digits 
+    \end{itemize}
 \end{itemize}
