@@ -1,15 +1,32 @@
 \subsection{Graphs}
 
+\subsubsection*{General Properties}
 \begin{itemize}
-    \item \textbf{Definition: }A \textit{graph} is a pair $G = (V, E)$ where $V$ is a set of \textit{vertices} and $E$ is a set of \textit{edges}, which are unordered pairs of distinct vertices.
-    \item \textbf{Degree of a vertex: }The degree of a vertex $v$ in a graph $G$, denoted $\deg(v)$, is the number of edges incident to $v$.
-    \item \textbf{Handshaking Lemma: }In any graph, the sum of the degrees of all vertices is equal to twice the number of edges. Formally, $\sum_{v \in V} \deg(v) = 2|E|$.
-    \item \textbf{Graph Isomorphism: }Two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ are isomorphic if there exists a bijection $f: V_1 \to V_2$ such that $\{u, v\} \in E_1$ if and only if $\{f(u), f(v)\} \in E_2$ for all $u, v \in V_1$.
-    \item \textbf{Bipartite Graph: }A graph is bipartite if its vertex set can be partitioned into two disjoint sets $U$ and $V$ such that every edge connects a vertex in $U$ to a vertex in $V$.
-    \item \textbf{Complete Graph: }A complete graph on $n$ vertices, denoted $K_n$, is a graph in which every pair of distinct vertices is connected by a unique edge. It has $\binom{n}{2}$ edges.
-    \item \textbf{Path and Cycle: }A path in a graph is a sequence of vertices where each adjacent pair is connected by an edge. A cycle is a path that starts and ends at the same vertex without repeating any edges or vertices (except for the starting/ending vertex).
-    \item \textbf{Connected Graph: }A graph is connected if there is a path between any two vertices in the graph.
-    \item \textbf{Tree: }A tree is a connected graph with no cycles. A tree with $n$ vertices has exactly $n-1$ edges.
-    \item \textbf{Planar Graph: }A graph is planar if it can be drawn on a plane without any edges crossing. Kuratowski's theorem states that a graph is planar if and only if it does not contain a subgraph that is a subdivision of $K_5$ (the complete graph on five vertices) or $K_{3,3}$ (the complete bipartite graph on two sets of three vertices).
-    \item \textbf{Euler's Formula: }For a connected planar graph with $V$ vertices, $E$ edges, and $F$ faces, the following relationship holds: $V - E + F = 2$.
+    \item \textbf{Handshaking Lemma: } The sum of the degrees of all vertices is exactly twice the number of edges ($\sum \deg(v) = 2|E|$).
+    \item \textbf{Bipartite Graph: } A graph whose vertices can be divided into two disjoint sets such that every edge connects a vertex in one set to a vertex in the other. A graph is bipartite if and only if it is \textbf{2-colorable} and contains \textbf{no cycles of odd length}.
+    \item \textbf{Complete Graph ($K_n$): } A simple graph where every pair of vertices is connected by an edge. It contains exactly $\frac{N(N-1)}{2}$ edges.
+    \item \textbf{DAG (Directed Acyclic Graph): } A directed graph with no directed cycles. Every DAG has at least one valid \textit{Topological Ordering}.
+    \item \textbf{Planar Graph: } A graph that can be drawn without edges crossing. \textbf{Euler's Formula:} For a planar graph with $V$ vertices, $E$ edges, $F$ faces, and $C$ connected components: $V - E + F = 1 + C$.
+\end{itemize}
+
+\subsubsection*{Tree Properties}
+\begin{itemize}
+    \item \textbf{Definition \& Edges: } A tree is a connected graph with no cycles. A tree with $N$ vertices always has exactly $N-1$ edges.
+    \item \textbf{Unique Paths: } There is exactly one simple path between any two vertices in a tree.
+    \item \textbf{Cycle Creation: } Adding exactly one new edge to any tree will create exactly one cycle.
+    \item \textbf{Bipartite Nature: } Every tree is inherently a bipartite graph (since it has no cycles, it has no odd cycles).
+\end{itemize}
+
+\subsubsection*{Important Graph Theorems}
+\begin{itemize}
+    \item \textbf{Eulerian Cycle \& Path: } 
+        \begin{itemize}
+            \item An undirected connected graph has an \textbf{Eulerian Cycle} (visits every edge exactly once and returns to start) $\iff$ \textbf{every} vertex has an even degree.
+            \item It has an \textbf{Eulerian Path} (visits every edge exactly once but doesn't return) $\iff$ exactly \textbf{zero or two} vertices have an odd degree.
+        \end{itemize}
+    \item \textbf{Dirac's Theorem (Hamiltonian Cycle): } In a simple graph with $N \ge 3$ vertices, if every vertex has a degree $\deg(v) \ge \frac{N}{2}$, the graph is guaranteed to have a Hamiltonian cycle (visits every vertex exactly once).
+    \item \textbf{Ore's Theorem (Hamiltonian Cycle): } In a simple graph with $N \ge 3$ vertices, if $\deg(u) + \deg(v) \ge N$ for every pair of non-adjacent vertices $u$ and $v$, the graph contains a Hamiltonian cycle.
+    \item \textbf{Mantel's Theorem: } The maximum number of edges in an $N$-vertex graph that does not contain any triangles (cycles of length 3) is strictly bounded by $\lfloor \frac{N^2}{4} \rfloor$.
+    \item \textbf{Kőnig's Theorem: } In any \textbf{bipartite graph}, the size of the Maximum Bipartite Matching is exactly equal to the size of the Minimum Vertex Cover. \textit{(Reduces an NP-Hard problem to a Max Flow / Bipartite Matching problem).}
+    \item \textbf{Dilworth's Theorem: } In any DAG, the size of the maximum anti-chain (largest set of vertices where none can reach another) is equal to the minimum number of directed paths needed to cover all vertices.
 \end{itemize}
