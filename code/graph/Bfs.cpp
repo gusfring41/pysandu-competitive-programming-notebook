@@ -1,7 +1,9 @@
 // Breadth First Search (BFS)
 // Time Complexity: O(V + E)
 // Space Complexity: O(V)
+
 void bfs(const Graph& graph, int start) {
+    
     int V = graph.size();
     vector<bool> visited(V, false);
     queue<int> q;
@@ -12,7 +14,6 @@ void bfs(const Graph& graph, int start) {
     while (!q.empty()) {
         int vertex = q.front();
         q.pop();
-        cout << vertex << " ";
 
         for (int neighbor : graph[vertex]) {
             if (!visited[neighbor]) {

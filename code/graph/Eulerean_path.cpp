@@ -1,19 +1,25 @@
 // Find the Eulerian path in a graph using Hierholzer's algorithm
 // Time complexity: O(E) where E is the number of edges in the graph
+// Use cases: visit every edge once, DNA sequencing, puzzles, drawing figures
 
-void findEulerianPath(const vector<vector<int>>& graph, int start, vector<int>& path) {
+vector<int> findEulerianPath(vector<vector<int>>& adj, int start) {
+
+    vector<int> path;
     stack<int> s;
     s.push(start);
 
     while (!s.empty()) {
         int v = s.top();
-        if (graph[v].empty()) {
+        if (adj[v].empty()) {
             path.push_back(v);
             s.pop();
         } else {
-            int u = graph[v].back();
-            graph[v].pop_back(); // Remove the edge from v to u
+            int u = adj[v].back();
+            adj[v].pop_back(); // Remove the edge from v to u
             s.push(u);
         }
     }
+
+    reverse(path.begin(), path.end());
+    return path;
 }
