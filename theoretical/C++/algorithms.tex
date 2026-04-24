@@ -1,7 +1,46 @@
-\subsection{Algorithms}
+\subsection{String}
 
 \begin{itemize}
-    \item \textbf{std::sort: } The \texttt{std::sort} function in C++ is typically implemented using a hybrid sorting algorithm called Introsort, which combines Quick Sort, Heap Sort, and Insertion Sort. It has an average time complexity of O(N log N).
-    \item \textbf{std::lower\_bound and std::upper\_bound: } These functions are used to find the lower and upper bounds of a value in a sorted range. They have a time complexity of O(log N) since they use binary search.
-    \item \textbf{std::next\_permutation: } This function generates the next lexicographical permutation of a sequence. It is useful for generating all permutations of a sequence in sorted order. The time complexity is O(N) for each call, where N is the length of the sequence.
+    \item \texttt{s.find(str)}: Retorna o índice da primeira ocorrência da substring \texttt{str}. 
+    \newline \textbf{Nota sobre npos:} Se a substring não for encontrada, a função retorna a constante \texttt{string::npos}. A verificação para saber se a string existe é \texttt{if (s.find(str) != string::npos)}.
+    \item \texttt{s.substr(pos, len)}: Retorna a substring que começa no índice \texttt{pos} e tem tamanho \texttt{len}. Se o parâmetro \texttt{len} for omitido, a substring vai de \texttt{pos} até o final da string original.
+    \item \texttt{s.erase(pos, len)}: Remove \texttt{len} caracteres a partir do índice \texttt{pos}. Altera a string original.
+    \item \texttt{s.insert(pos, str)}: Insere o conteúdo de \texttt{str} exatamente a partir do índice \texttt{pos}.
+    \item \texttt{to\_string(val)}: Converte números (int, double, long long) para \texttt{string}.
+    \item \texttt{stoi(s)} / \texttt{stoll(s)}: Converte \texttt{string} para \texttt{int} ou \texttt{long long}, respectivamente.
+\end{itemize}
+
+
+\begin{itemize}
+    \item \texttt{isalpha(c)} / \texttt{isdigit(c)} / \texttt{isalnum(c)}: Retorna verdadeiro se o \textit{char} for uma letra, um dígito, ou alfanumérico.
+    \item \texttt{tolower(c)} / \texttt{toupper(c)}: Converte o \textit{char} para minúsculo ou maiúsculo. (Para converter a string toda: \texttt{for(char \&c : s) c = tolower(c);}).
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Leitura até o EOF (Fim de Arquivo):}
+    \begin{verbatim}
+    string s;
+    while (cin >> s) {
+        // Processa cada palavra isoladamente
+    }
+    \end{verbatim}
+    
+    \item \textbf{Lendo uma linha inteira e separando por espaços (\texttt{<sstream>}):}.
+    \begin{verbatim}
+    #include <sstream>
+    string linha, palavra;
+    getline(cin, linha); // Lê a linha toda, incluindo espaços
+    
+    stringstream ss(linha);
+    while (ss >> palavra) {
+        // 'palavra' vai receber cada token separado por espaço
+    }
+    \end{verbatim}
+\end{itemize}
+
+\subsection{Built-ins do GCC (Operações Bitwise)}
+\begin{itemize}
+    \item \texttt{\_\_builtin\_popcount(x)}: Conta o número de bits '1' no inteiro \texttt{x}. Para \texttt{long long}, use \texttt{\_\_builtin\_popcountll(x)}.
+    \item \texttt{\_\_builtin\_clz(x)}: Conta os zeros à esquerda (\textit{count leading zeros}).
+    \item \texttt{\_\_builtin\_ctz(x)}: Conta os zeros à direita (\textit{count trailing zeros}). 
 \end{itemize}
