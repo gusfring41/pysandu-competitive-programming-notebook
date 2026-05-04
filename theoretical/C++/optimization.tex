@@ -1,9 +1,15 @@
 \subsection{System optimization}
 
-For faster IO, we can use the following code:
-\begin{lstlisting}[language=C++]
-ios::sync_with_stdio(false);
-cin.tie(nullptr);
-cout.tie(nullptr);
+\subsection{Build System (Makefile)}
+
+Para compilar qualquer arquivo (ex: \texttt{make A} para o arquivo \texttt{A.cpp}) com flags de debug, \textit{sanitizers} e a macro \texttt{LOCAL} ativa, utilize o seguinte \texttt{Makefile}:
+
+\begin{lstlisting}[language=make]
+# Variaveis implicitas do Make
+CXX = g++
+CXXFLAGS = -Wall -Wconversion -Wfatal-errors -g -std=c++17 
+ -DLOCAL -fsanitize=undefined,address
+LDFLAGS = -fsanitize=undefined,address
+
 \end{lstlisting}
-This code disables the synchronization between C++ streams and C streams, which can significantly improve the performance of input and output operations. Additionally, it unties the input and output streams, allowing them to operate independently, further enhancing the speed of IO operations.
+
