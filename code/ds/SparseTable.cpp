@@ -3,6 +3,7 @@
 // Space complexity: O(n * log n)
 // Idempotent operation f(a, a) = a (min, max, gcd, and, or)
 // Use cases: idempotent functions range queries
+    
 struct SparseTable{
 
     int n, p;

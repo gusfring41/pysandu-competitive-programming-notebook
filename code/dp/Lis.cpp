@@ -3,13 +3,10 @@
 
 int lis(vector<int>& arr) {
     vector<int> dp;
-    for (int num : arr) {
-        auto it = lower_bound(dp.begin(), dp.end(), num);
-        if (it == dp.end()) {
-            dp.push_back(num);
-        } else {
-            *it = num;
-        }
+    for (int x : arr) {
+        auto it = lower_bound(all(dp), x);
+        if(it == dp.end()) dp.push_back(x);
+        else *it = x;
     }
     return dp.size();
 }

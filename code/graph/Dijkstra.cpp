@@ -3,10 +3,10 @@
 // Space Complexity: O(V)
 // Use cases: shortest path in non-negative weighted graphs
 
-void dijkstra(vector<vector<pair<int, int>>>& adj, int src) {
+vector<int> dijkstra(vector<vector<pair<int, int>>>& adj, int src) {
 
     int n = adj.size() - 1;
-    vector<int> dist(n+1, INT_MAX);
+    vector<int> dist(n+1, INF);
     dist[src] = 0;
 
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // Min-heap priority queue
@@ -14,20 +14,19 @@ void dijkstra(vector<vector<pair<int, int>>>& adj, int src) {
 
     while (!pq.empty()) {
 
-        auto [d, u] = pq.top();
+        auto [d, i] = pq.top();
         pq.pop();
 
-        if(d > dist[u]) continue;
+        if(d > dist[i]) continue;
 
-        for (auto p : adj[u]) {
+        for (auto [u, w] : adj[i]) {
 
-            int v = p.first;
-            int weight = p.second;
-
-            if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
-                dist[v] = dist[u] + weight;
-                pq.push({dist[v], v});
+            if (dist[i] + w < dist[u]) {
+                dist[u] = dist[i] + w;
+                pq.push({dist[u], u});
             }
         }
     }
+
+    return dist;
 }

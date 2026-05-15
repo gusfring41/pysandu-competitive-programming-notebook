@@ -9,13 +9,12 @@ vector<int> findEulerianPath(vector<vector<int>>& adj, int start) {
     s.push(start);
 
     while (!s.empty()) {
-        int v = s.top();
-        if (adj[v].empty()) {
-            path.push_back(v);
+        int i = s.top();
+        if (adj[i].empty()) {
+            path.push_back(i);
             s.pop();
         } else {
-            int u = adj[v].back();
-            adj[v].pop_back(); // Remove the edge from v to u
+            int u = adj[i].back(); adj[i].pop_back(); 
             s.push(u);
         }
     }

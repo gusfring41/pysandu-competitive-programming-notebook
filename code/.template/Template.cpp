@@ -2,9 +2,10 @@
 
 using namespace std; 
 
-//#define int long long 
+#define int long long 
 #define vi vector<int>
 #define pii pair<int, int>
+#define all(x) (x).begin(), (x).end() 
 #define debug(x...) cout<<"["#x"]: ",[](auto...$){((cout<<$<<"; "),...);}(x),cout<<endl
 
 void solve(){
