@@ -18,7 +18,7 @@ void precompute(){
     }
 }
 
-int nCr(int n, int r){
+int choose(int n, int r){
     if(r < 0 or r > n) return 0;
     int num = fact[n];
     int den = (ifact[r] * ifact[n - r]) % MOD;
