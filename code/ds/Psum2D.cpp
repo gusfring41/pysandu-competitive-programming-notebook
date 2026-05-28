@@ -17,7 +17,6 @@ for (int i = 1; i <= n; i++) {
     }
 }
 
-
 // canto superior esquerdo (x1, y1) canto inferior direito (x2, y2)
 int x1, y1, x2, y2; 
 int res =   psum[x2][y2] 
