@@ -1,0 +1,30 @@
+\subsection{Pascal's Triangle}
+
+\begin{itemize}
+    \item \textbf{Definition: } The entry in the $n$-th row and $k$-th column (0-indexed) corresponds to the binomial coefficient:
+          $$ T_{n,k} = \binom{n}{k} = \frac{n!}{k!(n-k)!} $$
+          
+    \item \textbf{Stifel's Relation (Recurrence): } The fundamental rule of the triangle:
+          $$ \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} $$
+          
+    \item \textbf{Row Sum (Powers of 2): } The sum of all elements in the $n$-th row equals the number of all possible subsets of an $n$-element set:
+          $$ \sum_{k=0}^{n} \binom{n}{k} = 2^n $$
+          
+    \item \textbf{Binomial Theorem: } The elements of the $n$-th row act as the coefficients for the polynomial expansion:
+          $$ (x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k $$
+          
+    \item \textbf{Hockey Stick Identity (Column Sum): } The sum of elements moving vertically down a column $k$, starting from the first non-zero entry ($n=k$) down to row $n$:
+          $$ \sum_{i=k}^{n} \binom{i}{k} = \binom{n+1}{k+1} $$
+          
+    \item \textbf{Parallel Diagonal Sum: } The sum of elements moving diagonally (right and down):
+          $$ \sum_{m=0}^{k} \binom{n+m}{m} = \binom{n+k+1}{k} $$
+          
+    \item \textbf{Shallow Diagonal Sum (Fibonacci): } The sum of the shallow diagonals (moving one step up and one step right) generates the Fibonacci sequence:
+          $$ \sum_{i=0}^{\lfloor n/2 \rfloor} \binom{n-i}{i} = F_{n+1} $$
+          
+    \item \textbf{Sierpinski Triangle \& Parity: } Computing $\binom{n}{k} \pmod 2$ yields a Sierpinski fractal. A combination is odd ($1$) if and only if all set bits in $k$ are also set in $n$ (bitwise AND):
+          $$ \binom{n}{k} \equiv 1 \pmod 2 \iff (n \ \& \ k) == k $$
+          
+    \item \textbf{Lucas' Theorem: } Used to compute combinations modulo a small prime $p$. Express $n$ and $k$ in base $p$ to get digits $(n_m \dots n_0)$ and $(k_m \dots k_0)$. If any $k_i > n_i$, the final result is 0:
+          $$ \binom{n}{k} \equiv \prod_{i=0}^{m} \binom{n_i}{k_i} \pmod p $$
+\end{itemize}
