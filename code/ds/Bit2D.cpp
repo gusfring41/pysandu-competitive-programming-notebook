@@ -1,12 +1,12 @@
-// Binary Indexed Tree(BIT) 2D
 // Time complexity: query and update log N * log M
-// Space complexity: O(N*M)
-// Use cases: dynamic 2D prefix sums, counting active points in a dynamic rectangle
+// 1-based indexing
 
 struct BIT2D {
 
     int n, m; vector<vector<int>> bit;
-    BIT2D(int n, int m) : n(n), m(m) {
+    BIT2D(int n, int m) {
+        this->n = n;
+        this->m = m;
         bit.assign(n+1, vector<int>(m+1, 0));
     }
 

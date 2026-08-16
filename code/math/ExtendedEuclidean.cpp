@@ -15,6 +15,6 @@ int euclides(int a, int b, int &x, int &y){
 int inverso_mod(int a, int m){
     int x, y;
     int g = euclides(a, m, x, y);
-    if(g != -1) return -1;
+    if(g != 1) return -1;
     return (x%m + m) % m;
 }

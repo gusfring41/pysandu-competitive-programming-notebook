@@ -1,12 +1,11 @@
-// Binary Indexed Tree(BIT)
 // Time complexity: query and update log N
-// Space complexity: O(N)
-// Use cases: dynamic psum, inversion counting, dynamic multiset
+// 1-based indexing, [l, r]
 
 struct BIT{
 
     int n; vector<int> bit;
-    BIT(int n) : n(n){
+    BIT(int n){
+        this->n = n;
         bit.assign(n+1, 0);
     }
 
