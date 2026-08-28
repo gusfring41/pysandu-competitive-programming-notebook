@@ -1,63 +1,76 @@
-template <typename T>
+// 0-based indexing, [l, r)
+// SegLazy<int> seg
 
-struct SegLazy{
-    int n;
+template <typename T>
+struct SegLazy {
+    int size; 
     vector<T> tree, lazy;
     const T NEUTRO = 0, LAZY_NEUTRO = 0;
 
-    T merge(T a, T b) {return a + b;}
+    T merge(T a, T b) { return a + b; }
 
-    SegLazy(int n){
-        this->n = n;
-        tree.assign(4*n, NEUTRO);
-        lazy.assign(4*n, NEUTRO);
+    void init(int n) {
+        size = 1;
+        while (size < n) size *= 2;
+        tree.assign(2 * size, NEUTRO);
+        lazy.assign(2 * size, LAZY_NEUTRO);
     }
 
-    void push(int node, int l, int r){
-        if(lazy[node] == LAZY_NEUTRO) return;
-        tree[node] += lazy[node] * (r - l + 1);
-        if(l != r){
-            lazy[2*node] += lazy[node];
-            lazy[2*node + 1] += lazy[node];
+    void push(int x, int lx, int rx) {
+        if (lazy[x] == LAZY_NEUTRO) return;
+        
+        tree[x] += lazy[x] * (rx - lx); 
+    
+        if (rx - lx > 1) {
+            lazy[2 * x + 1] += lazy[x];
+            lazy[2 * x + 2] += lazy[x];
         }
-        lazy[node] = LAZY_NEUTRO;
+        lazy[x] = LAZY_NEUTRO;
     }
 
-    void build(int node, int l, int r, vector<T> &v){
-        if(l == r){
-            tree[node] = v[l]; return; 
-        }
-        int mid = (l+r)/2;
-        build(2*node, l, mid, v);
-        build(2*node + 1, mid+1, r, v);
-        tree[node] = merge(tree[2*node], tree[2*node + 1]);
-    }
-
-    void update(int node, int l, int r, int ql, int qr, T val){
-        push(node, l, r);
-        if(ql > r or qr < l) return;
-        if(ql <= l and r <= qr){
-            lazy[node] += val;
-            push(node, l, r);
+    void build(vector<T> &a, int x, int lx, int rx) {
+        if (rx - lx == 1) {
+            if (lx < (int)a.size()) tree[x] = a[lx];
             return;
         }
-        int mid = (l+r)/2;
-        update(2*node, l, mid, ql, qr, val);
-        update(2*node + 1, mid+1, r, ql, qr, val);
-        tree[node] = merge(tree[2*node], tree[2*node + 1]);
+        int m = (lx + rx) / 2;
+        build(a, 2 * x + 1, lx, m);
+        build(a, 2 * x + 2, m, rx);
+        tree[x] = merge(tree[2 * x + 1], tree[2 * x + 2]);
     }
 
-    T query(int node, int l, int r, int ql, int qr){
-        push(node, l, r);
-        if(ql > r or qr < l) return NEUTRO;
-        if(ql <= l and r <= qr) return tree[node];
-        int mid = (l+r)/2;
-        return merge(query(2*node, l, mid, ql, qr), query(2*node + 1, mid + 1, r, ql, qr));
+    void build(vector<T> &a) {
+        init((int)a.size());
+        build(a, 0, 0, size);
     }
 
-    void build(const vector<T>& v) { build(1, 0, n - 1, v); }
-    void update(int ql, int qr, T val) { update(1, 0, n - 1, ql, qr, val); }
-    T query(int ql, int qr) { return query(1, 0, n - 1, ql, qr); }
-    
+    void update(int l, int r, T val, int x, int lx, int rx) {
+        push(x, lx, rx);
+        if (lx >= r or rx <= l) return; 
+        if (lx >= l and rx <= r) {      
+            lazy[x] += val;
+            push(x, lx, rx);
+            return;
+        }
+        int m = (lx + rx) / 2;
+        update(l, r, val, 2 * x + 1, lx, m);
+        update(l, r, val, 2 * x + 2, m, rx);
+        tree[x] = merge(tree[2 * x + 1], tree[2 * x + 2]);
+    }
 
+    void update(int l, int r, T val) { 
+        update(l, r, val, 0, 0, size); 
+    }
+
+    T query(int l, int r, int x, int lx, int rx) {
+        push(x, lx, rx);
+        if (lx >= r or rx <= l) return NEUTRO; 
+        if (lx >= l and rx <= r) return tree[x]; 
+        int m = (lx + rx) / 2;
+        return merge(query(l, r, 2 * x + 1, lx, m), query(l, r, 2 * x + 2, m, rx));
+    }
+
+    T query(int l, int r) { 
+        return query(l, r, 0, 0, size); 
+    }
 };

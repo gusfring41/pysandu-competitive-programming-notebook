@@ -1,34 +1,63 @@
-template <typename T>
+// 0-based indexing, [l, r)
+// SegTree<int> seg;
 
+template <typename T> 
 struct SegTree{
-    int n;
+    
+    int size; 
     vector<T> tree;
-    const T NEUTRO = 1e18;
+    const T NEUTRO = 0; // adapt
 
-    T merge(T a, T b) {return min(a, b);}
-    SegTree(int n){
-        this->n = n;
-        tree.assign(2*n, NEUTRO);
+    T merge(T a, T b){
+        return a + b; // adapt
     }
 
-    void build(vector<T>& v){
-        for(int i=0; i<n; i++) tree[n+i] = v[i];
-        for(int i=n-1; i>0; i--) tree[i] = merge(tree[2*i], tree[2*i + 1]);
+    void init(int n){
+        size = 1;
+        while(size < n) size *= 2;
+        tree.assign(2*size, NEUTRO);
     }
 
-    void update(int pos, T val){
-        pos += n;
-        tree[pos] = val;
-        for(pos /= 2; pos > 0; pos /= 2) tree[pos] = merge(tree[pos*2], tree[pos*2 + 1]);
+    void build(vector<T> &a, int x, int lx, int rx){
+        if(rx - lx == 1){
+            if(lx < (int)a.size()) tree[x] = a[lx];
+            return;
+        }
+        int m = (lx + rx)/2;
+        build(a, 2*x+1, lx, m);
+        build(a, 2*x+2, m, rx);
+        tree[x] = merge(tree[2*x+1], tree[2*x + 2]);
+    }
+
+    void build(vector<T> &a){
+        init((int)a.size());
+        build(a, 0, 0, size);
+    }
+
+    void set(int i, T v, int x, int lx, int rx){
+        if(rx - lx == 1){
+            tree[x] = v;
+            return;
+        }
+        int m = (lx + rx)/2;
+        if(i < m) set(i, v, 2*x+1, lx, m);
+        else set(i, v, 2*x + 2, m, rx);
+        tree[x] = merge(tree[2*x+1], tree[2*x+2]);
+    }
+
+    void set(int i, T v){
+        set(i, v, 0 , 0, size);
+    }
+
+    T query(int l, int r, int x, int lx, int rx){
+        if(lx >= r or rx <= l) return NEUTRO;
+        if(lx >= l and rx <= r) return tree[x];
+        int m = (lx + rx)/2;
+        return merge(query(l, r, 2*x+1, lx, m), query(l, r, 2*x+2, m, rx));
     }
 
     T query(int l, int r){
-        T res_l = NEUTRO, res_r = NEUTRO;
-        for(l += n, r += n; l <= r; l /= 2, r /= 2){
-            if(l%2 != 0) res_l = merge(res_l, tree[l++]);
-            if(r%2 == 0) res_r = merge(tree[r--], res_r);
-        }
-        return merge(res_l, res_r);
+        return query(l, r, 0, 0, size);
     }
 
 };
