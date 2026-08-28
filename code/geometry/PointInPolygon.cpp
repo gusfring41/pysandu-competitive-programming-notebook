@@ -1,5 +1,5 @@
 // retorna: 1 (Dentro), -1 (Na borda), 0 (Fora)
-// o polígono não precisa ser convexo, mas os vértices devem estar em ordem.
+// o poligono nao precisa ser convexo, mas os vertices devem estar em ordem.
 int point_in_polygon(Point P, const vector<Point>& poly) {
     int n = poly.size();
     bool in = false;

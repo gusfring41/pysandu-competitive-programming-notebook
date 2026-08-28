@@ -1,9 +1,9 @@
-// Sparse Table
+// Sparse Table 
 // Time Complexity: O(n * log n) build, O(1) querie
 // Space complexity: O(n * log n)
 // Idempotent operation f(a, a) = a (min, max, gcd, and, or)
 // Use cases: idempotent functions range queries
-    
+// 0-based indexing, [l, r]
 struct SparseTable{
 
     int n, p;

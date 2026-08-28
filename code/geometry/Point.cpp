@@ -1,8 +1,9 @@
 
 const double EPS = 1e-9;
-// EPS = 0 -> int
-
+// int -> int EPS = 0 
+// int -> mudar todo double pra inteiro, exceto funcao area
 struct Point {
+
     double x, y;
     
     Point() : x(0), y(0) {}
@@ -67,7 +68,7 @@ void sort_by_angle(vector<Point>& p, Point center) {
     });
 }
 
-// shoelace formula, vértices do polígono ordenados pelo perímetro.
+// shoelace formula, vertices do poligono ordenados pelo perimetro.
 double polygon_area(const vector<Point>& p) {
     double area = 0.0;
     int n = p.size();
@@ -90,13 +91,14 @@ int orientation(Point O, Point A, Point B) {
 
 // 2. P in seg AB?
 bool on_segment(Point P, Point A, Point B) {
+    if (abs(cross_product(A, B, P)) > EPS) return false;
     return P.x >= min(A.x, B.x) - EPS && P.x <= max(A.x, B.x) + EPS &&
            P.y >= min(A.y, B.y) - EPS && P.y <= max(A.y, B.y) + EPS;
 }
 
 // Ab seg cross CD?
 bool segments_intersect(Point A, Point B, Point C, Point D) {
-    // Calcula as 4 orientações necessárias
+    // calcula as 4 orientações necessarias
     int o1 = orientation(A, B, C);
     int o2 = orientation(A, B, D);
     int o3 = orientation(C, D, A);
@@ -111,5 +113,5 @@ bool segments_intersect(Point A, Point B, Point C, Point D) {
     if (o3 == 0 && on_segment(A, C, D)) return true; // A toca CD
     if (o4 == 0 && on_segment(B, C, D)) return true; // B toca CD
 
-    return false; // Não se cruzam
+    return false; // nao se cruzam
 }

@@ -29,7 +29,7 @@ struct BIT{
         return query(r) - query(l-1);
     }
 
-    // retorna o índice do k-ésimo elemento da bit
+    // retorna o indice do k-esimo elemento da bit
     int find_kth(int k){
 
         int idx = 0;

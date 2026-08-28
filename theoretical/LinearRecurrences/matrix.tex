@@ -1,0 +1,67 @@
+\subsection{Matrix Exponentiation \& Linear Recurrences}
+
+Matrix exponentiation is used to compute the $n$-th term of a linear recurrence or paths in a graph in $O(k^3 \log n)$ time, where $k$ is the state size. 
+
+\begin{itemize}
+    \item \textbf{General Linear Recurrence:} 
+    For $f(n) = c_1 f(n-1) + c_2 f(n-2) + \dots + c_k f(n-k)$, the transition matrix $T$ of size $k \times k$ pushes the state forward:
+    \[
+    \begin{bmatrix}
+    c_1 & c_2 & \dots & c_{k-1} & c_k \\
+    1 & 0 & \dots & 0 & 0 \\
+    0 & 1 & \dots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & \dots & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    f(n-1) \\ f(n-2) \\ \vdots \\ f(n-k+1) \\ f(n-k)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    f(n) \\ f(n-1) \\ \vdots \\ f(n-k+2) \\ f(n-k+1)
+    \end{bmatrix}
+    \]
+
+    \item \textbf{Adding Constants ($+C$):} 
+    To compute $f(n) = f(n-1) + f(n-2) + C$, append a dummy state for the constant that always maps to itself:
+    \[
+    \begin{bmatrix}
+    1 & 1 & 1 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1 
+    \end{bmatrix}
+    \begin{bmatrix}
+    f(n-1) \\ f(n-2) \\ C
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    f(n) \\ f(n-1) \\ C
+    \end{bmatrix}
+    \]
+
+    \item \textbf{Prefix Sums of a Recurrence:} 
+    To compute $S(n) = \sum_{i=0}^{n} f(i)$, add $S(n)$ to the state. Example for Fibonacci $S(n) = S(n-1) + f(n)$:
+    \[
+    \begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 1 & 1 \\
+    0 & 1 & 0 
+    \end{bmatrix}
+    \begin{bmatrix}
+    S(n-1) \\ f(n) \\ f(n-1)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    S(n) \\ f(n+1) \\ f(n)
+    \end{bmatrix}
+    \]
+
+    \item \textbf{Graph Paths of Exact Length $K$:} 
+    Let $A$ be the adjacency matrix of a graph ($A_{i,j}$ = number of edges from $i$ to $j$). 
+    The value at $(A^K)_{i,j}$ is the exact number of paths of length $K$ from vertex $i$ to vertex $j$.
+
+    \item \textbf{Min-Plus Algebra (Shortest Path of Length $K$):} 
+    To find the shortest path of exactly $K$ edges, modify the matrix multiplication rule:
+    \[ C_{i,j} = \min_{k} (A_{i,k} + B_{k,j}) \]
+    \textit{Note:} Replace `*` with `+`, and `+` with `min`. The identity matrix for this algebra has $0$ on the main diagonal and $\infty$ everywhere else.
+\end{itemize}

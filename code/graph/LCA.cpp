@@ -1,5 +1,7 @@
-
-// Pre-processing: O(N log N) | Query: O(log N)
+// Finds the Lowest Common Ancestor (LCA) of two nodes in a tree using Binary Lifting and Euler Tour technique.
+// Time Complexity: O(N log N) pre-processing, O(log N) per query
+// Space Complexity: O(N log N)
+// Use cases: LCA queries, distance between two nodes in a tree, path queries on a tree, jumping k-th ancestors.
 
 int timer, k;
 vector<vector<int>> adj;
